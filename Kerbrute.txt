@@ -1,0 +1,8 @@
+~/go/bin/kerbrute userenum --dc CONTROLLER.local -d CONTROLLER.local AD_user.txt 
+./kerbrute_linux_amd64 userenum -d Dictionary.csl --dc Dictionary.csl /usr/share/wordlists/rockyou.txt 
+
+
+New working
+./kerbrute_linux_amd64 userenum --domain cicada.htb --dc 10.10.11.35 /usr/share/wordlists/rockyou.txt
+
+

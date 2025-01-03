@@ -1,0 +1,2 @@
+gobuster vhost -u http://bolt.htb -w /opt/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -o gobuster.vhost.80
+gobuster vhost -k -u https://bolt.htb -w /opt/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -o gobuster.vhost.443

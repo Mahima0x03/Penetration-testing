@@ -1,0 +1,35 @@
+rpcclient -U "" -N 10.10.10.161
+rpcclient -U "username" 172.31.3.4
+rpcclient -U "michael.wrightson" 10.10.11.35
+
+querydispinfo 
+enumdomusers              
+getusername
+enumdomgroups
+
+querygroup 0x200
+
+querygroupmem 0x200
+
+queryuser 0x1f4
+
+rpcmap.py 'ncacn_ip_tcp:10.10.10.213'
+
+rpcmap.py 'ncacn_ip_tcp:10.10.10.213' | grep -A2 'DCOM'
+
+python3 IOXIDResolver.py -t 10.10.10.213
+
+rpcclient -U  "Olivia%ichliebedich" 10.10.11.42 -c "enumdomusers"
+
+
+#Working with creds
+rpcclient -U 'DOMAIN\user%password' IP
+
+
+
+crackmapexec smb 10.10.3.31 -u 'twilliams' -p 'roastpotatoes' --rid-brute
+
+
+
+
+

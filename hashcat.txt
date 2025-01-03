@@ -1,0 +1,4 @@
+sudo hashcat -m 13100 hash2.txt /usr/share/wordlists/rockyou.txt
+sudo hashcat -m 13100 hash2.txt /usr/share/wordlists/rockyou.txt --show
+
+hashcat GHJKLGHJK -m 1500 /usr/share/wordlists/rockyou.txt
