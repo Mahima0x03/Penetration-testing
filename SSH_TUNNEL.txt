@@ -1,0 +1,12 @@
+ssh  -L  8080:localhost:8080 aeolus@10.0.2.25
+
+ssh  -L  8080:localhost:8080 rosa@10.10.11.38
+
+#Working
+ssh -L 4000:localhost:8080 rosa@chemistry.htb
+
+
+ssh -L 3000:localhost:8080 michael@sightless.htb
+
+ssh -N michael@10.10.11.32 -L 8080:localhost:8080
+

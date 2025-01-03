@@ -1,0 +1,6 @@
+smtp
+telnet 10.10.10.77 25
+HELO Pleasesubscribe
+MAIL FROM: <BruceWayne@WayneCorp.com>
+RCPT TO: <nico@megabank.com>
+RCPT TO: <Wadewilson@stuff.com>

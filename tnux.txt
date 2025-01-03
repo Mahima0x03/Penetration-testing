@@ -1,0 +1,2 @@
+tmux list-sessions
+tmux attach-session -t 

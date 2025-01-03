@@ -1,0 +1,15 @@
+/opt/Windows/BloodHound_Python/bloodhound.py -d heist.offsec -u enox -p california -c all -ns 192.168.194.165
+
+
+User ShareHound / user the below
+
+#We can use in the  kali machine it self - Its working
+
+bloodhound-python -u enox -p california -ns 192.168.159.165 -d heist.offsec -c all 
+
+certipy-ad find -u JODIE.SUMMERS -p 'hHO_S9gff7ehXw' -dc-ip nara-security.com  -dns-tcp -ns 172.16.201.26 -bloodhound
+
+#SMB Share SYSVOL needs to read
+
+python3 bloodhound.py --dns-tcp -ns 10.10.11.174 -d support.htb -u 'ldap' -p 'bcxfhdjsrjfvn' -c all
+

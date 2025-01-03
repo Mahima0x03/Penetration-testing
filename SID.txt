@@ -1,0 +1,10 @@
+S-1-5-32-544 – built-in Administrators group
+S-1-5-32-545 – local users
+S-1-5-32-555 – Remote Desktop Users group that are allowed to log in via RDP
+S-1-5-domainID-500 – built-in Windows administrator account
+Etc.
+
+Converting the SID to user name
+$SID = New-Object System.Security.Principal.SecurityIdentifier(“S-1-5-21-914744703-3800712539-3320214069”)
+$User = $SID.Translate([System.Security.Principal.NTAccount])
+$User.Value 

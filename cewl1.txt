@@ -1,0 +1,4 @@
+cewl -d 5 -m 10 -w fuse.txt http://fuse.fabricorp.local/papercut/logs/html/index.htm --with-numerbers
+
+cewl http://192.168.169.61:8081/ | grep -v CeWL > custom-wordlist.txt
+cewl --lowercase http://192.168.169.61:8081/ | grep -v CeWL  >> custom-wordlist.txt

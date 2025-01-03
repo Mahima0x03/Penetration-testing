@@ -1,0 +1,1 @@
+enum4linux -a -u "" -p "" 10.10.11.42 && enum4linux -a -u "guest" -p "" 10.10.11.42

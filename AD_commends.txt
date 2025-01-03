@@ -1,0 +1,17 @@
+get-netcomputer
+get-netcomputer -fulldata
+get-netcomputer -fulldata | select operatingsystem
+get-adgroupmember
+get-netgroup
+get-netgroup | findstr "V"
+get-netuser
+get-netuser | select userprincipalname,pwdlastset
+
+#AD cheatsheet
+https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993
+
+
+net user
+net user /domain
+net user vinot /domain
+whoami /all

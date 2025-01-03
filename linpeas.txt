@@ -1,0 +1,4 @@
+sh linpeas.sh | tee linpeas-output.txt
+
+./linpeas.sh -a  # All checks
+

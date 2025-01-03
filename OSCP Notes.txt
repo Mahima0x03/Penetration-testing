@@ -1,0 +1,3 @@
+OSCP Notes
+
+https://gabb4r.gitbook.io/oscp-notes/service-enumeration/smb-enumeration

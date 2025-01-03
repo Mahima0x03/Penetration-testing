@@ -1,0 +1,7 @@
+rpcclient -U '' -N 172.31.1.20 
+
+rpcclient -U "" -N 10.10.10.169
+enumdomusers
+queryuser rid #eg (0x1f4)
+querydispinfo
+

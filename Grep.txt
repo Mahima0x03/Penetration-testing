@@ -1,0 +1,1 @@
+cat rustscan_output.txt | cut -f1 -d '/' | tr '\n' ','

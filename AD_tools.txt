@@ -1,0 +1,22 @@
+sudo apt install -y impacket-scripts
+sudo apt install -y bloodhound
+sudo apt install -y crackmapexec
+git clone https://github.com/ropnop/kerbrute.git
+cd kerbrute
+go build .
+sudo mv kerbrute /usr/local/bin
+cd ~
+sudo apt install -y enum4linux
+sudo apt install -y ldap-utils
+pip3 install ldapdomaindump
+pip3 install sprayhound
+git clone https://github.com/PowerShellMafia/PowerSploit.git
+cd PowerSploit/Recon
+cp PowerView.ps1 ~/Desktop/
+git clone https://github.com/BloodHoundAD/BloodHound.git
+cd BloodHound/Ingestors
+gem install evil-winrm
+git clone https://github.com/Orange-Cyberdefense/ASREPRoast.git
+cd ASREPRoast
+pip3 install -r requirements.txt
+git clone https://github.com/GhostPack/Rubeus.git

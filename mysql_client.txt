@@ -1,0 +1,4 @@
+impacket-mssqlclient PublicUser:GuestUserCantWrite1@sequel.htb
+
+responder -I tun0 -v
+

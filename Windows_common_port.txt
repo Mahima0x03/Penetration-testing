@@ -1,0 +1,15 @@
+TCP
+80
+443
+445
+139
+111
+8080
+8443
+161
+3389
+
+If the above things are not work then try with UDP scan
+nmap -sU IP
+161
+111

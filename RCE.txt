@@ -1,0 +1,4 @@
+email=vinot%40gmail.com|ping+-c4+192.168.10.8
+
+tcpdump -i eth0 icmp -U -s0 -w - >final_icmp.pcap 
+

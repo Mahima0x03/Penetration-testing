@@ -1,0 +1,6 @@
+ping -c 3 IP # linux
+ping -n 3 IP # windows
+
+tcpdump -i any "icmp"
+
+ping -c 3 192.168.45.160

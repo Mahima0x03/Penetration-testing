@@ -1,4 +1,10 @@
-sudo hashcat -m 13100 hash2.txt /usr/share/wordlists/rockyou.txt
-sudo hashcat -m 13100 hash2.txt /usr/share/wordlists/rockyou.txt --show
+hashcat -a 0 -m 1410 hash /usr/share/wordlists/rockyou.txt
 
-hashcat GHJKLGHJK -m 1500 /usr/share/wordlists/rockyou.txt
+
+SHA-1 hash 
+
+hashcat -m 100 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
+
+
+$krb5asrep$23$
+hashcat -m 18200 -a 0 <hash_file> <wordlist>

@@ -1,0 +1,2 @@
+ wpscan --url http://wordy -e p --no-banner --no-update
+ wpscan --url http://wordy --enumerate v p, t, tt --enumerate u

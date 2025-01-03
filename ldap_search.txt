@@ -1,0 +1,44 @@
+
+nmap -n -sV --script "ldap* and not brute" -p 389 192.168.225.21
+
+nmap -n -sV — script “ldap* and not brute” -p 389 $IP
+nmap -n -sV --script "ldap* and not brute" 172.31.3.2 -Pn
+ldapsearch -x -h 172.31.1.4 -s base namingcontexts
+ldapsearch -h 10.10.10.193 -x -b "DC=fabricorp,DC=local"
+ldapsearch -h 10.10.10.193 -x -s base namingcontexts
+nmap 192.168.0.112 -p 389 --script ldap-search --script-args 'ldap.username="cn=admin,dc=symfonos,dc=local", ldap.password="qMDdyZh3cT6eeAWD"'
+
+ldapsearch -x -b "dc=cascade,dc=local" -H ldap://10.10.10.182
+
+nmap --script "ldap* and not brute" $ip -p 389 -v -Pn -sT
+
+
+New
+nmap -n -sV -Pn --script "ldap* and not brute" 192.168.203.122 
+
+ldapsearch -v -x -b "DC=return,DC=local" -H "ldap://10.10.11.108" "(objectclass=*)"
+
+ldapsearch -v -x -b "DC=access,DC=offsec" -H ldap://192.168.162.187 "(objectclass=*)"
+
+
+Its working
+
+ldapsearch -x -H ldap://172.31.1.4 -s base namingcontexts
+ldapsearch -x -H ldap://10.10.11.35 -b "DC=cicada,DC=htb"
+
+ldapsearch -x -b "DC=support,DC=htb" -H "ldap://10.10.11.174" "(objectClass=user)" sAMAccountName
+
+DC=nara-security,DC=com
+
+ldapsearch ldap://192.168.204.30 -x -b "DC=nara-security,DC=com"
+ldapsearch -v -x -b "DC=administrator,DC=htb" -H "ldap://10.10.11.42" "(objectclass=*)"
+ldapsearch -x -H ldap://10.10.187.116:389 -D "CN=Username,CN=Users,DC=raz0rblack,DC=thm" -w "password" -b "DC=raz0rblack,DC=thm" "(objectclass=*)"
+
+
+
+Enumeration with creds
+
+ldapsearch -h support.htb -D 'ldap@support.htb' -w 'passwordvbcnmfjg' -b 'dc=support,dc=htb'
+
+
+ldapsearch -x -H 'ldap://10.10.10.179' -D 'SVC_TGS' -w 'GPPstillStandingStrong2k18' -b "dc=active,dc=htb" -s sub "(&(objectCategory=person)(objectClass=user)(!(useraccountcontrol:1.2.840.113556.1.4.803:=2)))" samaccountname | grep sAMAccountName

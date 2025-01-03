@@ -1,0 +1,1 @@
+dirsearch -u http://$targetip -r -o dirsearch.txt

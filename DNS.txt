@@ -1,0 +1,43 @@
+DNS
+Query specific records
+nslookup -type=SRV _ldap._tcp.example.com
+nslookup -type=SRV _kerberos._tcp.example.com
+
+Find the nameservers:
+nslookup -type=NS example.com
+
+Query DNS records
+dig _ldap._tcp.example.com SRV
+dig example.com NS
+
+Reverse lookup:
+dig -x <IP Address>
+
+Nmap
+nmap -sU -p 53 --script=dns-service-discovery <target>
+
+Comprehensive enumeration
+dnsenum example.com
+
+
+Collect DNS records
+dnsrecon -d example.com -t SRV
+
+
+Zone Transfers
+dig axfr example.com @<DNS_Server_IP>
+
+dnsrecon -d example.com -t axfr
+
+
+Look for SRV records to find AD services
+nslookup -type=SRV _ldap._tcp.dc._msdcs.example.com
+
+Identify hosts by their IP addresses:
+dig -x <IP>
+
+Use Python scripts or tools like Impacket
+python3 GetADUsers.py -dc-ip <DC_IP> <domain>/<username>:<password>
+
+
+
